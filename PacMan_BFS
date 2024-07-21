@@ -1,0 +1,125 @@
+HackerRank Home
+HackerRank
+|
+Prepare
+Certify
+Compete
+Apply
+Search
+2
+ 
+The email address you signed up with has not been verified. You won't be ranked on the leaderboard until you verify your account.
+
+SEND AGAIN
+Dashboard  Artificial Intelligence  A* Search  PacMan - BFSPoints: 0.00 Rank: 129205
+PacMan - BFS 
+Problem
+Submissions
+Leaderboard
+Discussions
+Submitted a minute ago
+Download All Games
+OpponentResults
+(Won/Tied/Lost)Games
+JudgeBot2/0/0View Game
+
+Submitted Code
+Language: Python 3
+
+ Open in editor
+1
+a = input().split(' ')
+2
+a = tuple(int(i) for i in a)
+3
+g = input().split(' ')
+4
+g = tuple(int(j) for j in g)
+5
+size = input().split(' ')
+6
+size = tuple(int(k) for k in size)
+7
+maze = []
+8
+for i in range(size[0]):
+9
+    r = list(input())
+10
+    maze.append(r)
+11
+​
+12
+explored = []
+13
+node = a
+14
+queue = [node]
+15
+parent = {a: None}
+16
+​
+17
+while queue:
+18
+    node = queue.pop(0)
+19
+    if node not in explored:
+20
+        explored.append(node)
+21
+    
+22
+    if node == g:
+23
+        break
+24
+​
+25
+    directions = [(-1, 0), (0, -1), (0, 1), (1, 0)]
+26
+    for direction in directions:
+27
+        next_node = (node[0] + direction[0], node[1] + direction[1])
+28
+        if 0 <= next_node[0] < size[0] and 0 <= next_node[1] < size[1]:
+29
+            if next_node not in explored and maze[next_node[0]][next_node[1]] != '%':
+30
+                queue.append(next_node)
+31
+                if next_node not in parent:
+32
+                    parent[next_node] = node
+33
+​
+34
+path = []
+35
+node = g
+36
+while node is not None:
+37
+    path.append(node)
+38
+    node = parent[node]
+39
+path.reverse()
+40
+​
+41
+print(str(len(explored)))
+42
+for i in explored:
+43
+    print(str(i[0]) + " " + str(i[1]))
+44
+​
+45
+print(str(len(path) - 1))
+46
+for j in path:
+47
+    print(str(j[0]) + " " + str(j[1]))
+Interview Prep | Blog | Scoring | Environment | FAQ | About Us | Support | Careers | Terms Of Service | Privacy Policy |
+
